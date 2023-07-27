@@ -62,8 +62,7 @@ const TabsHeader = ({ selected, setSelected }) => {
           }}
           key={id}
           id={id}
-          aria-controls={id}
-        >
+          aria-controls={id}>
           {text}
         </TabsItem>
       ))}
@@ -71,12 +70,12 @@ const TabsHeader = ({ selected, setSelected }) => {
   );
 };
 
-
 const Event = () => {
   const navigate = useNavigate();
 
   const [chats, setChats] = useState();
   const [selected, setSelected] = useState("all_events");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (selected === "all_events") {
@@ -103,25 +102,21 @@ const Event = () => {
             <>
               <PanelHeaderButton
                 onClick={() => navigate("/event/create")}
-                aria-label="addition"
-              >
+                aria-label="addition">
                 <Icon28AddOutline />
               </PanelHeaderButton>
               <PanelHeaderButton
                 onClick={() => dispatch(changeActiveModal("filtration"))}
-                aria-label="filtration"
-              >
+                aria-label="filtration">
                 <Icon28SlidersOutline />
               </PanelHeaderButton>
               <PanelHeaderButton
                 onClick={() => console.log("search")}
-                aria-label="search"
-              >
+                aria-label="search">
                 <Icon28SearchOutline />
               </PanelHeaderButton>
             </>
-          }
-        >
+          }>
           <Title>События</Title>
         </PanelHeader>
         <Tabs mode={"default"}>
@@ -132,17 +127,17 @@ const Event = () => {
           </HorizontalScroll>
         </Tabs>
         <Group id="all-event">
-        <TabsHeader
-          selected={selected}
-          setSelected={(value) => setSelected(value)}
-        />
-        <Group>
-
-          <div className="wrapper">
-            {chats?.map((chat, i) => {
-              return <EventCard {...chat} key={i} />;
-            })}
-          </div>
+          <TabsHeader
+            selected={selected}
+            setSelected={(value) => setSelected(value)}
+          />
+          <Group>
+            <div className="wrapper">
+              {chats?.map((chat, i) => {
+                return <EventCard {...chat} key={i} />;
+              })}
+            </div>
+          </Group>
         </Group>
       </Panel>
     </View>
