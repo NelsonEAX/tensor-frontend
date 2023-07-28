@@ -143,7 +143,9 @@ const ListChats = () => {
         <FixedLayout vertical="top" className="fixed-layout">
           <TabsHeader
             selected={selected}
-            setSelected={(value) => dispatch(setActiveTab(value))}
+            setSelected={(value) => {
+              isLoaded && dispatch(setActiveTab(value));
+            }}
           />
           <Search
             className="fixed-layout__search"
